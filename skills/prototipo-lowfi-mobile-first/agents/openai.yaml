@@ -1,0 +1,4 @@
+interface:
+  display_name: "Protótipo Low-Fi Mobile-First"
+  short_description: "Criar protótipos de baixa fidelidade com foco mobile-first."
+  default_prompt: "Criar protótipo low-fi mobile-first com estrutura simples, breakpoints progressivos e fluxo navegável."

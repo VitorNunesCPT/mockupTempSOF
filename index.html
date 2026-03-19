@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Protótipo Baixa Fidelidade - Fluxo de Solicitações</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section id="homeScreen" class="screen active">
+        <article class="surface">
+          <header class="surface-title-row">
+            <h1>Caixa</h1>
+            <button id="refreshButton" class="icon-btn" type="button" aria-label="Atualizar lista">
+              ↻
+            </button>
+          </header>
+
+          <nav class="home-tabs" aria-label="Abas da Home">
+            <button class="home-tab" data-home-tab="recebidas" type="button">
+              <span class="tab-icon">▣</span>
+              <span>Recebidas</span>
+            </button>
+            <button class="home-tab active" data-home-tab="respondidas" type="button">
+              <span class="tab-icon">▣</span>
+              <span>Respondidas</span>
+            </button>
+            <button class="home-tab" data-home-tab="sofs" type="button">
+              <span class="tab-icon">▣</span>
+              <span>SOFs</span>
+            </button>
+          </nav>
+
+          <div id="panel-recebidas" class="home-panel">
+            <div class="empty-state">Sem dados nesta aba no protótipo.</div>
+          </div>
+
+          <div id="panel-respondidas" class="home-panel active">
+            <table class="grid-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Sol. ID</th>
+                  <th>Descrição</th>
+                  <th>Data da resposta</th>
+                  <th>Teleconsultor</th>
+                </tr>
+              </thead>
+              <tbody id="tableTela1"></tbody>
+            </table>
+          </div>
+
+          <div id="panel-sofs" class="home-panel">
+            <table class="grid-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Sol. ID</th>
+                  <th>Descrição</th>
+                  <th>Data da sub.</th>
+                  <th>Data da publi.</th>
+                  <th>URL</th>
+                  <th>Teleconsultor</th>
+                </tr>
+              </thead>
+              <tbody id="tableTela3"></tbody>
+            </table>
+          </div>
+
+          <footer class="table-footer">
+            <p id="tableCount">0 registro(s)</p>
+            <div class="pagination">
+              <button type="button" class="page-btn">‹</button>
+              <button type="button" class="page-btn active">1</button>
+              <button type="button" class="page-btn">2</button>
+              <button type="button" class="page-btn">3</button>
+              <button type="button" class="page-btn">›</button>
+            </div>
+          </footer>
+        </article>
+      </section>
+
+      <section id="detailScreen" class="screen">
+        <article class="surface detail-surface">
+          <header class="detail-title-row">
+            <h2 id="detailTitle">
+              <span class="doc-icon">▮</span>
+              <span>Resposta da Teleconsultoria (<strong id="detailSolId"></strong>)</span>
+            </h2>
+            <button id="backButton" class="btn outline" type="button">Voltar</button>
+          </header>
+
+          <div class="status-row">
+            <strong>Status:</strong>
+            <span id="statusBadge" class="status-badge">-</span>
+          </div>
+
+          <section class="meta-grid">
+            <p><strong>ID:</strong> <span id="metaId"></span></p>
+            <p><strong>Sol. ID:</strong> <span id="metaSolId"></span></p>
+            <p><strong>Data da resposta:</strong> <span id="metaDataResposta"></span></p>
+            <p><strong>Data da sub.:</strong> <span id="metaDataSub"></span></p>
+            <p><strong>Data da publi.:</strong> <span id="metaDataPubli"></span></p>
+            <p><strong>Teleconsultor:</strong> <span id="metaTeleconsultor"></span></p>
+            <p class="full"><strong>Descrição:</strong> <span id="metaDescricao"></span></p>
+            <p class="full"><strong>URL:</strong> <span id="metaUrl"></span></p>
+          </section>
+
+          <section class="field-block">
+            <h3>Pergunta Original:</h3>
+            <div class="text-box" id="perguntaOriginal"></div>
+          </section>
+
+          <section class="field-block">
+            <h3>Resposta Direta:</h3>
+            <div class="text-box" id="respostaDireta"></div>
+          </section>
+
+          <section class="field-block">
+            <h3>Complemento:</h3>
+            <div class="text-box" id="complemento"></div>
+          </section>
+
+          <section class="field-block">
+            <h3>Atributos:</h3>
+            <div class="text-box" id="atributos"></div>
+          </section>
+
+          <section class="field-block">
+            <h3>Educação Permanente:</h3>
+            <div class="text-box" id="educacaoPermanente"></div>
+          </section>
+
+          <section class="field-block">
+            <h3>Referências:</h3>
+            <div class="text-box" id="referencias"></div>
+          </section>
+
+          <section class="field-block">
+            <h3>Tags (Termos de Busca):</h3>
+            <div class="text-box" id="tags"></div>
+          </section>
+
+          <p class="line-info"><strong>Indicação a SOF:</strong> <span id="indicacaoSof"></span></p>
+          <p class="line-info"><strong>Grau de Evidência:</strong> <span id="grauEvidencia"></span></p>
+
+          <div class="actions">
+            <button id="submitButton" class="btn primary" type="button">Submeter Solicitação</button>
+            <button id="publishButton" class="btn primary" type="button">Marcar como Publicado</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <div id="overlay" class="overlay hidden"></div>
+
+    <dialog id="submitModal" class="modal-card">
+      <header class="modal-header">
+        <h3><span class="doc-icon">▮</span> Informar Data de Submissão</h3>
+      </header>
+      <div class="modal-body">
+        <label for="submissionDate">Data da submissão:</label>
+        <input type="date" id="submissionDate" />
+      </div>
+      <div class="modal-actions">
+        <button id="cancelSubmit" class="btn outline" type="button">Voltar</button>
+        <button id="confirmSubmit" class="btn primary" type="button">Confirmar Submissão</button>
+      </div>
+    </dialog>
+
+    <dialog id="publishModal" class="modal-card">
+      <header class="modal-header">
+        <h3><span class="doc-icon">▮</span> Informar Publicação</h3>
+      </header>
+      <div class="modal-body">
+        <label for="publishDate">Data de envio/publicação:</label>
+        <input type="date" id="publishDate" />
+        <label for="responseDate">Data da resposta:</label>
+        <input type="date" id="responseDate" />
+      </div>
+      <div class="modal-actions">
+        <button id="cancelPublish" class="btn outline" type="button">Voltar</button>
+        <button id="confirmPublish" class="btn primary" type="button">Confirmar Publicação</button>
+      </div>
+    </dialog>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
