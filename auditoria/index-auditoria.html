@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup - Auditoria de Teleconsultoria</title>
+    <link rel="stylesheet" href="./styles-auditoria.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section id="screenSetup" class="screen active">
+        <article class="card">
+          <header class="card-head">
+            <h1>Auditoria de Teleconsultoria</h1>
+            <p>Selecionar modalidade, ano e mes para iniciar a auditoria.</p>
+          </header>
+
+          <div class="form-grid">
+            <label id="fieldModality" class="field">
+              <span>Modalidade oferecida</span>
+              <select id="modalitySelect">
+                <option value="">Selecione</option>
+                <option value="assincrona">Teleconsultoria assincrona</option>
+                <option value="regulacao">Teleconsultoria de Regulacao</option>
+                <option value="teleinterconsulta">Teleinterconsulta</option>
+              </select>
+            </label>
+
+            <label id="fieldYear" class="field hidden">
+              <span>Ano</span>
+              <select id="yearSelect" disabled>
+                <option value="">Selecione</option>
+              </select>
+            </label>
+
+            <label id="fieldMonth" class="field hidden">
+              <span>Mes</span>
+              <select id="monthSelect" disabled>
+                <option value="">Selecione</option>
+                <option value="1">Janeiro</option>
+                <option value="2">Fevereiro</option>
+                <option value="3">Marco</option>
+                <option value="4">Abril</option>
+                <option value="5">Maio</option>
+                <option value="6">Junho</option>
+                <option value="7">Julho</option>
+                <option value="8">Agosto</option>
+                <option value="9">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+              </select>
+            </label>
+          </div>
+
+          <section id="selectionProgress" class="selection-progress">
+            <p id="progressModality" class="hidden"><strong>Modalidade:</strong> <span></span></p>
+            <p id="progressYear" class="hidden"><strong>Ano:</strong> <span></span></p>
+            <p id="progressMonth" class="hidden"><strong>Mes:</strong> <span></span></p>
+          </section>
+
+          <section id="summaryBox" class="summary-box hidden">
+            <p><strong>Quantidade de teleconsultorias realizadas no mes:</strong> <span id="totalMonth"></span></p>
+            <p><strong>Quantidade a ser auditada:</strong> <span id="totalAudit"></span></p>
+            <p class="calc-note">* <span id="calcReference"></span></p>
+          </section>
+
+          <footer class="actions">
+            <button id="startButton" class="btn btn-primary" type="button" disabled>Iniciar</button>
+          </footer>
+        </article>
+      </section>
+
+      <section id="screenAudit" class="screen">
+        <article class="card">
+          <header class="card-head">
+            <div class="head-line">
+              <button id="backSetupButton" class="btn btn-outline" type="button">Voltar</button>
+              <h2>Tela 2 - Avaliacao da Teleconsultoria</h2>
+            </div>
+            <p id="auditContext"></p>
+          </header>
+
+          <div class="form-grid single">
+            <label class="field">
+              <span>Cod. de teleconsultoria</span>
+              <select id="teleCodeSelect">
+                <option value="">Selecione um codigo</option>
+              </select>
+            </label>
+            <button id="loadTeleButton" class="btn btn-primary" type="button">Carregar teleconsultoria</button>
+          </div>
+
+          <section id="auditFormSection" class="hidden">
+            <div id="ratingFields" class="rating-fields"></div>
+
+            <label class="field">
+              <span>Observacao</span>
+              <textarea id="observationInput" rows="4" placeholder="Registrar observacao da auditoria"></textarea>
+            </label>
+
+            <footer class="actions">
+              <button id="saveNotesButton" class="btn btn-primary" type="button">
+                Cadastrar notas da teleconsultoria
+              </button>
+              <button id="clearNotesButton" class="btn btn-outline" type="button">
+                Limpar notas atribuidas
+              </button>
+            </footer>
+            <p id="feedbackMessage" class="feedback"></p>
+          </section>
+        </article>
+      </section>
+    </main>
+
+    <script src="./script-auditoria.js"></script>
+  </body>
+</html>
