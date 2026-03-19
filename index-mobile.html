@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Protótipo Mobile-First (X-small) - Fluxo de Solicitações</title>
+    <link rel="stylesheet" href="./styles-mobile.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section id="homeScreen" class="screen active">
+        <article class="surface">
+          <header class="surface-head">
+            <h1>Caixa</h1>
+            <button id="refreshButton" class="icon-btn" type="button" aria-label="Atualizar">↻</button>
+          </header>
+
+          <nav class="home-tabs" aria-label="Abas da Home">
+            <button class="home-tab" data-home-tab="recebidas" type="button">Recebidas</button>
+            <button class="home-tab active" data-home-tab="respondidas" type="button">Respondidas</button>
+            <button class="home-tab" data-home-tab="sofs" type="button">SOFs</button>
+          </nav>
+
+          <div id="panel-recebidas" class="home-panel">
+            <p class="empty-state">Sem dados nesta aba no protótipo.</p>
+          </div>
+
+          <div id="panel-respondidas" class="home-panel active">
+            <div id="listTela1" class="mobile-list"></div>
+            <div class="table-wrap">
+              <table class="grid-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Sol. ID</th>
+                    <th>Descrição</th>
+                    <th>Data da resposta</th>
+                    <th>Teleconsultor</th>
+                  </tr>
+                </thead>
+                <tbody id="tableTela1"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="panel-sofs" class="home-panel">
+            <div id="listTela3" class="mobile-list"></div>
+            <div class="table-wrap">
+              <table class="grid-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Sol. ID</th>
+                    <th>Descrição</th>
+                    <th>Data da sub.</th>
+                    <th>Data da publi.</th>
+                    <th>URL</th>
+                    <th>Teleconsultor</th>
+                  </tr>
+                </thead>
+                <tbody id="tableTela3"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <footer class="table-footer">
+            <p id="tableCount">0 registro(s)</p>
+            <div class="pagination" aria-hidden="true">
+              <span class="page-dot active">1</span>
+              <span class="page-dot">2</span>
+              <span class="page-dot">3</span>
+            </div>
+          </footer>
+        </article>
+      </section>
+
+      <section id="detailScreen" class="screen">
+        <article class="surface detail-surface">
+          <header class="detail-head">
+            <button id="backButton" class="btn btn-outline" type="button">Voltar</button>
+            <h2>Resposta da Teleconsultoria (<span id="detailSolId"></span>)</h2>
+          </header>
+
+          <div class="status-row">
+            <strong>Status:</strong>
+            <span id="statusBadge" class="status-badge">-</span>
+          </div>
+
+          <section class="meta-list">
+            <p><strong>ID:</strong> <span id="metaId"></span></p>
+            <p><strong>Sol. ID:</strong> <span id="metaSolId"></span></p>
+            <p><strong>Data da resposta:</strong> <span id="metaDataResposta"></span></p>
+            <p><strong>Data da sub.:</strong> <span id="metaDataSub"></span></p>
+            <p><strong>Data da publi.:</strong> <span id="metaDataPubli"></span></p>
+            <p><strong>Teleconsultor:</strong> <span id="metaTeleconsultor"></span></p>
+            <p><strong>Descrição:</strong> <span id="metaDescricao"></span></p>
+            <p><strong>URL:</strong> <span id="metaUrl"></span></p>
+          </section>
+
+          <div id="defaultDetailFields">
+            <section class="field-block">
+              <h3>Pergunta Original</h3>
+              <div id="perguntaOriginal" class="text-box"></div>
+            </section>
+
+            <section class="field-block">
+              <h3>Resposta Direta</h3>
+              <div id="respostaDireta" class="text-box"></div>
+            </section>
+
+            <section class="field-block">
+              <h3>Complemento</h3>
+              <div id="complemento" class="text-box"></div>
+            </section>
+
+            <section class="field-block">
+              <h3>Atributos</h3>
+              <div id="atributos" class="text-box"></div>
+            </section>
+
+            <section class="field-block">
+              <h3>Educação Permanente</h3>
+              <div id="educacaoPermanente" class="text-box"></div>
+            </section>
+
+            <section class="field-block">
+              <h3>Referências</h3>
+              <div id="referencias" class="text-box"></div>
+            </section>
+
+            <section class="field-block">
+              <h3>Tags (Termos de Busca)</h3>
+              <div id="tags" class="text-box"></div>
+            </section>
+
+            <p class="line-info"><strong>Indicação a SOF:</strong> <span id="indicacaoSof"></span></p>
+            <p class="line-info"><strong>Grau de Evidência:</strong> <span id="grauEvidencia"></span></p>
+          </div>
+
+          <div id="sofsDetailFields" class="sofs-detail-fields">
+            <section class="field-block">
+              <h3>Resposta</h3>
+              <div id="sofsResposta" class="text-box"></div>
+            </section>
+
+            <section class="field-block">
+              <h3>Referência</h3>
+              <div id="sofsReferencia" class="text-box"></div>
+            </section>
+
+            <section class="field-block">
+              <h3>DESC/MESH</h3>
+              <div id="sofsDescMesh" class="text-box"></div>
+            </section>
+
+            <section class="field-block">
+              <h3>Categoria/Evidencia</h3>
+              <div id="sofsCategoriaEvidencia" class="text-box"></div>
+            </section>
+          </div>
+
+          <div class="actions">
+            <button id="submitButton" class="btn btn-primary" type="button">Submeter avaliação</button>
+            <button id="publishButton" class="btn btn-primary" type="button">Marcar como Publicado</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="evaluationScreen" class="screen">
+        <article class="surface detail-surface">
+          <header class="detail-head">
+            <button id="evaluationBackButton" class="btn btn-outline" type="button">Voltar</button>
+            <h2>Submeter avaliação (<span id="evaluationSolId"></span>)</h2>
+          </header>
+
+          <section id="evaluationFields" class="evaluation-list"></section>
+
+          <div class="actions">
+            <button id="openSubmitDateButton" class="btn btn-primary" type="button">Confirmar Submissão</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <div id="overlay" class="overlay hidden"></div>
+
+    <dialog id="submitModal" class="modal-card">
+      <header class="modal-head">
+        <h3>Informar Data de Submissão</h3>
+      </header>
+      <div class="modal-body">
+        <label for="submissionDate">Data da submissão</label>
+        <input id="submissionDate" type="date" />
+      </div>
+      <div class="modal-actions">
+        <button id="cancelSubmit" class="btn btn-outline" type="button">Voltar</button>
+        <button id="confirmSubmit" class="btn btn-primary" type="button">Confirmar</button>
+      </div>
+    </dialog>
+
+    <dialog id="publishModal" class="modal-card">
+      <header class="modal-head">
+        <h3>Informar Publicação</h3>
+      </header>
+      <div class="modal-body">
+        <label for="publishDate">Data de envio/publicação</label>
+        <input id="publishDate" type="date" />
+        <label for="responseDate">Data da resposta</label>
+        <input id="responseDate" type="date" />
+        <label for="url">URL da publicação</label>
+        <input id="url" type="url" placeholder="https://exemplo.com/publicacao" />
+
+      </div>
+      <div class="modal-actions">
+        <button id="cancelPublish" class="btn btn-outline" type="button">Voltar</button>
+        <button id="confirmPublish" class="btn btn-primary" type="button">Confirmar</button>
+      </div>
+    </dialog>
+
+    <script src="./script-mobile.js"></script>
+  </body>
+</html>
